@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+	crossorigin="anonymous">
+<head>
+<meta charset="ISO-8859-1">
+<title>Create New Appointment</title>
+</head>
+<body>
+	<div class="container text-center">
+		<div>
+			<h1>Appointment</h1>
+		</div>
+		<form action="#" th:action="@{/patient/booked}"
+			th:object="${appointment}" method="post"
+			style="max-width: 600px; margin: 0 auto">
+			<div class="m-3">
+				<div class="form-group">
+					<!-- <div class="form-group row" th:field=*{patient}>
+						<label class="col-form-label col-sm-4">Patient</label>
+						<div class="col-sm-8">
+							<span th:text="${patient.firstName +' '+patient.lastName}" th:value="${patient.patientId}"></span>
+						</div>
+					</div> -->
+					
+					<div class="form-group row">
+						<label class="col-form-label col-sm-4">Patient</label>
+						<div class="col-sm-8">
+							<select th:field="*{patient}" class="form-control" required>
+								<!-- <option th:text="Select..."/>  -->
+								<th:block th:each="pat: ${patient}">
+									<option th:text="${pat.firstName +' '+pat.lastName}"
+										th:value="${pat.patientId}" />
+								</th:block>
+							</select>
+						</div>
+					</div>
+					
+					<div class="form-group row">
+						<label class="col-form-label col-sm-4">Doctor</label>
+						<div class="col-sm-8">
+							<select th:field="*{doctor}" class="form-control" required>
+								<!-- <option th:text="Select..."/>  -->
+								<th:block th:each="doc: ${doctor}">
+									<option th:text="${'Dr.'+ ' '+doc.firstName +' '+doc.lastName}"
+										th:value="${doc.doctorId}" />
+								</th:block>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-form-label col-sm-4">Appointment Date</label>
+						<div class="col-sm-8">
+							<input type="text" th:field="*{AptDate}" class="form-control"
+								required />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-form-label col-sm-4">Appointment Time</label>
+						<div class="col-sm-8">
+							<input type="text" step="0.1" th:field="*{AptTime}"
+								class="form-control" required />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-form-label col-sm-4">Patient Age</label>
+						<div class="col-sm-8">
+							<input type="text" th:field="*{patientAge}"
+								class="form-control" required />
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-form-label col-sm-4">Type Of Visit</label>
+						<div class="col-sm-8">
+							<input type="text" th:field="*{visit}"
+								class="form-control" required />
+						</div>
+					</div>
+					<!--  <div class="form-group row">
+						<label class="col-form-label col-sm-4">Visit</label>
+						<div class="col-sm-8">
+							<select th:field="*{visit}"class="form-control" required>
+								<option th:text="First Visit" th:value="First Visit"/>
+								<option th:text="Regular" th:value="Regular"/> 
+							</select>
+						</div>
+					</div>  -->
+					<div class="text-center p-3">
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
